@@ -39,15 +39,16 @@ dependencies {
     api 'com.google.android.play:core:1.10.3'
     api 'com.google.android.ump:user-messaging-platform:2.1.0'
 }
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//                groupId = 'com.github.Infinity-Technologies-Global'
-//                artifactId = 'Module-Update-GDPR'
-//                version = '1.0.1'
-//            }
-//        }
-//    }
-//}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Phonghh9920'
+                artifactId = 'DemoInAppUpdate'
+                version = '1.0.1'
+            }
+        }
+    }
+}
