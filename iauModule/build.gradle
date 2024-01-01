@@ -46,7 +46,7 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.Phonghh9920'
-                artifactId = 'DemoInAppUpdate'
+                artifactId = 'UMP'
                 version = '1.0.1'
             }
         }
