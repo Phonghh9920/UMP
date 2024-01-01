@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.itg.demoinappupdate'
+    namespace 'com.nodoor.ump'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.flashalert2017.version1"
+        applicationId "com.nodoor.ump"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -50,6 +50,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-
 }

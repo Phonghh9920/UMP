@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
-        android:name=".ui.MyApplication"
+        android:name="com.nodoor.ump.ui.MyApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.DemoInAppUpdate"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.nodoor.ump.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.LanguageActivity"/>
+        <activity android:name="com.nodoor.ump.ui.LanguageActivity"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />

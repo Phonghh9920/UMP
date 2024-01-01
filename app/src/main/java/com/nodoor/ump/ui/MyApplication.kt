@@ -1,4 +1,4 @@
-package com.itg.demoinappupdate.ui
+package com.nodoor.ump.ui
 
 import android.app.Application
 

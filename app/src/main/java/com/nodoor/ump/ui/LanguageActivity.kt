@@ -1,16 +1,16 @@
-package com.itg.demoinappupdate.ui
+package com.nodoor.ump.ui
 
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.ump.FormError
-import com.itg.demoinappupdate.databinding.ActivityLanguageBinding
-import com.itg.iaumodule.IAdConsentCallBack
-import com.itg.iaumodule.ITGAdConsent
+import com.nodoor.iau_module.ConsentCallBack
+import com.nodoor.iau_module.NoDoorAdConsent
+import com.nodoor.ump.databinding.ActivityLanguageBinding
 
 
-class LanguageActivity : AppCompatActivity(), IAdConsentCallBack {
+class LanguageActivity : AppCompatActivity(), ConsentCallBack {
 
     private lateinit var binding: ActivityLanguageBinding
 
@@ -21,10 +21,10 @@ class LanguageActivity : AppCompatActivity(), IAdConsentCallBack {
         setContentView(binding.root)
 
         binding.buttonShowDialog.setOnClickListener {
-            ITGAdConsent.showDialogConsent(this)
+            NoDoorAdConsent.showDialogConsent(this)
         }
         binding.buttonRequestDialog.setOnClickListener {
-            ITGAdConsent.showDialogConsent(this)
+            NoDoorAdConsent.showDialogConsent(this)
         }
 
 
@@ -37,6 +37,7 @@ class LanguageActivity : AppCompatActivity(), IAdConsentCallBack {
     override fun isDebug(): Boolean {
         return true
     }
+
     /**
      * https://developers.google.com/admob/android/targeting
      */

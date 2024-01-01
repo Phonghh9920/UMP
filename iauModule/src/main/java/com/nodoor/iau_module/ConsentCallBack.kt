@@ -1,9 +1,9 @@
-package com.itg.iaumodule
+package com.nodoor.iau_module
 
 import android.app.Activity
 import com.google.android.ump.FormError
 
-interface IAdConsentCallBack {
+interface ConsentCallBack {
     fun getCurrentActivity(): Activity
 
     fun isDebug(): Boolean
@@ -21,5 +21,6 @@ interface IAdConsentCallBack {
     fun testDeviceID(): String {
         return ""
     }
+
     fun onRequestShowDialog()
 }

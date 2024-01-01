@@ -1,4 +1,4 @@
-package com.itg.demoinappupdate.ui.notifications
+package com.nodoor.ump.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

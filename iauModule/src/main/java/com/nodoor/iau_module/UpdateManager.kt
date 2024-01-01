@@ -1,4 +1,4 @@
-package com.itg.iaumodule
+package com.nodoor.iau_module
 
 import android.app.Activity
 import android.util.Log
@@ -15,10 +15,10 @@ import com.google.android.ump.ConsentInformation.ConsentStatus
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 
-class ITGUpdateManager(
+class UpdateManager(
     val activity: Activity,
     val requestCode: Int,
-    val iUpdateInstanceCallback: IUpdateInstanceCallback
+    val iUpdateInstanceCallback: UpdateInstanceCallback
 ) {
     companion object {
         var canRequestAds: Boolean = false
@@ -28,7 +28,7 @@ class ITGUpdateManager(
 
     private var appUpdateManager: AppUpdateManager? = null
 
-    fun checkUpdateAvailable(): ITGUpdateManager {
+    fun checkUpdateAvailable(): UpdateManager {
         if (appUpdateManager == null) {
             appUpdateManager = AppUpdateManagerFactory.create(activity)
         }
@@ -36,7 +36,7 @@ class ITGUpdateManager(
         return this
     }
 
-    fun checkBelowGeoEEA(isDebug: Boolean): ITGUpdateManager {
+    fun checkBelowGeoEEA(isDebug: Boolean): UpdateManager {
         if (appUpdateManager == null) {
             appUpdateManager = AppUpdateManagerFactory.create(activity)
         }
@@ -45,7 +45,7 @@ class ITGUpdateManager(
     }
 
     private fun checkForUpdates(
-        activity: Activity, iUpdateInstanceCallback: IUpdateInstanceCallback
+        activity: Activity, iUpdateInstanceCallback: UpdateInstanceCallback
     ) {
         appUpdateManager = AppUpdateManagerFactory.create(activity)
         val appUpdateInfoTask: Task<AppUpdateInfo> = appUpdateManager?.appUpdateInfo!!
@@ -127,18 +127,17 @@ class ITGUpdateManager(
             Log.v("InAppUpdateManager", "loadConsentForm :Failure")
         })
         consentInformation.requestConsentInfoUpdate(activity, params, {
-            when(consentInformation.consentStatus){
-                ConsentStatus.REQUIRED ->{
+            when (consentInformation.consentStatus) {
+                ConsentStatus.REQUIRED -> {
                     Log.v("InAppUpdateManager", "ConsentStatus.REQUIRED")
                 }
-                ConsentStatus.OBTAINED ->{
+                ConsentStatus.OBTAINED -> {
                     Log.v("InAppUpdateManager", "ConsentStatus.OBTAINED")
                 }
             }
-            if (consentInformation.consentStatus == ConsentStatus.REQUIRED)
-            {
+            if (consentInformation.consentStatus == ConsentStatus.REQUIRED) {
 
-            }else{
+            } else {
                 Log.v("InAppUpdateManager", "ConsentStatus ${consentInformation.consentStatus}")
             }
 

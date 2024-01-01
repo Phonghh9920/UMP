@@ -1,4 +1,4 @@
-package com.itg.demoinappupdate
+package com.nodoor.ump
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,14 +9,14 @@ import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.android.ump.FormError
-import com.itg.demoinappupdate.databinding.ActivityMainBinding
-import com.itg.iaumodule.IAdConsentCallBack
-import com.itg.iaumodule.ITGAdConsent
-import com.itg.iaumodule.IUpdateInstanceCallback
-import com.itg.iaumodule.ITGUpdateManager
+import com.nodoor.iau_module.ConsentCallBack
+import com.nodoor.iau_module.NoDoorAdConsent
+import com.nodoor.iau_module.UpdateManager
+import com.nodoor.iau_module.UpdateInstanceCallback
+import com.nodoor.ump.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity(), IAdConsentCallBack {
+class MainActivity : AppCompatActivity(), ConsentCallBack {
 
     private val isShowDialogUpdate: Boolean = true
     private lateinit var binding: ActivityMainBinding
@@ -33,25 +33,25 @@ class MainActivity : AppCompatActivity(), IAdConsentCallBack {
             updateWithType(AppUpdateType.IMMEDIATE, isShowDialogUpdate)
         }
         binding.buttonLoadConsent.setOnClickListener {
-            ITGAdConsent.loadAndShowConsent(false,this)
+            NoDoorAdConsent.loadAndShowConsent(false, this)
             binding.buttonShowConsent.isEnabled = false
             binding.progressLoading.visibility = View.VISIBLE
         }
         binding.buttonShowConsent.setOnClickListener {
-            ITGAdConsent.showDialogConsent(this)
+            NoDoorAdConsent.showDialogConsent(this)
 //            startActivity(Intent(this, LanguageActivity::class.java))
         }
         binding.buttonLoadAndShowConsent.setOnClickListener {
             binding.progressLoading.visibility = View.VISIBLE
-            ITGAdConsent.loadAndShowConsent(true,this)
+            NoDoorAdConsent.loadAndShowConsent(true, this)
         }
         binding.buttonRestartConsent.setOnClickListener {
-            ITGAdConsent.resetConsentDialog()
+            NoDoorAdConsent.resetConsentDialog()
         }
     }
 
     private fun updateWithType(type: Int, isShowDialogUpdate: Boolean) {
-        if (isShowDialogUpdate) ITGUpdateManager(this, 100, object : IUpdateInstanceCallback {
+        if (isShowDialogUpdate) UpdateManager(this, 100, object : UpdateInstanceCallback {
             override fun updateAvailableListener(updateAvailability: AppUpdateInfo): Int {
                 when (updateAvailability.updateAvailability()) {
                     UpdateAvailability.UPDATE_AVAILABLE -> {
@@ -86,9 +86,9 @@ class MainActivity : AppCompatActivity(), IAdConsentCallBack {
 
 
     override fun onConsentSuccess(canPersonalized: Boolean) {
-        if (canPersonalized){
+        if (canPersonalized) {
             Log.v("ITGAdConsent", "onConsentSuccess true")
-        }else{
+        } else {
             Log.v("ITGAdConsent", "onConsentSuccess false")
         }
         binding.progressLoading.visibility = View.GONE

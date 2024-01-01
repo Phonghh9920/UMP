@@ -1,4 +1,4 @@
-package com.itg.iaumodule
+package com.nodoor.iau_module
 
 import android.content.Context
 import android.preference.PreferenceManager
@@ -10,7 +10,7 @@ import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 
 
-object ITGAdConsent {
+object NoDoorAdConsent {
 
     private var canPersonalized: Boolean = true
     private var consentInformation: ConsentInformation? = null
@@ -68,7 +68,7 @@ object ITGAdConsent {
 //        loadConsent(callback)
 //    }
 
-    fun loadAndShowConsent(isShowDialog: Boolean,callback: IAdConsentCallBack, ) {
+    fun loadAndShowConsent(isShowDialog: Boolean, callback: ConsentCallBack) {
 
         consentInformation =
             UserMessagingPlatform.getConsentInformation(callback.getCurrentActivity())
@@ -113,7 +113,7 @@ object ITGAdConsent {
     }
 
 
-    fun showDialogConsent(callback: IAdConsentCallBack) {
+    fun showDialogConsent(callback: ConsentCallBack) {
         if (consentInformation?.isConsentFormAvailable == true) {
             loadForm(consentInformation!!, true, callback)
         } else {
@@ -124,11 +124,11 @@ object ITGAdConsent {
     private fun loadForm(
         consentInformation: ConsentInformation,
         isShowDialog: Boolean,
-        callback: IAdConsentCallBack
+        callback: ConsentCallBack
     ) {
         // Loads a consent form. Must be called on the main thread.
         UserMessagingPlatform.loadConsentForm(callback.getCurrentActivity(), { consentForm ->
-            if (!isShowDialog){
+            if (!isShowDialog) {
                 callback.onConsentStatus(consentInformation.consentStatus)
             }
             if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
